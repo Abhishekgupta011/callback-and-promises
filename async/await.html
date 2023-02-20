@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     console.log("person1 : shows ticket")
+
+console.log("person2 : shows ticket")
+
+const promiseWifeBringingTickets= new Promise((resolve, reject)=>{
+
+  setTimeout(()=>{
+
+    resolve("ticket")
+
+  },3000)
+
+})
+
+
+
+const getPopcorn = promiseWifeBringingTickets.then((t)=>{
+
+  console.log("wife : i have the tickets")
+
+  console.log("husband : we should go in")
+
+  console.log("wife : no i am hungry");
+
+  return new Promise((resolve, reject)=>{
+
+    resolve(`${t} popcorn`)
+
+  })
+
+})
+
+
+
+const getButter = getPopcorn.then((t)=>{ 
+
+  console.log("husband : i got the popcorn")
+
+  console.log("husband : now we should go in")
+
+  console.log("wifr : no i need butter on the popcorn")
+
+  return new Promise((resolve, reject)=>{
+
+    resolve(`${t} butter`)
+
+  })
+
+})
+
+const getColdDrinks = getButter.then((t)=>{
+
+   return new Promise((resolve, reject)=>{
+
+    resolve(`${t} coldDrinks`)
+
+   })
+
+})
+
+getColdDrinks.then((t)=>console.log(t))
+
+console.log("person4 : shows ticket")
+
+console.log("person5 : shows ticket")
+
+
+
+// using async/await
+
+
+
+async function movieNight() {
+
+  try {
+
+    console.log("person1 : shows ticket")
+
+    console.log("person2 : shows ticket")
+
+    const promiseWifeBringingTickets = new Promise((resolve, reject) => {
+
+      setTimeout(() => {
+
+        resolve("ticket")
+
+      }, 3000)
+
+    })
+
+     
+
+    const t = await promiseWifeBringingTickets
+
+    console.log("wife : i have the tickets")
+
+    console.log("husband : we should go in")
+
+    console.log("wife : no i am hungry")
+
+     
+
+    const getPopcorn = new Promise((resolve, reject) => {
+
+      resolve(`${t} popcorn`)
+
+    })
+
+    const p = await getPopcorn
+
+    console.log("husband : i got the popcorn")
+
+    console.log("husband : now we should go in")
+
+    console.log("wife : no i need butter on the popcorn")
+
+     
+
+    const getButter = new Promise((resolve, reject) => {
+
+      resolve(`${p} butter`)
+
+    })
+
+    const b = await getButter
+
+     
+
+    const getColdDrinks = new Promise((resolve, reject) => {
+
+      resolve(`${b} coldDrinks`)
+
+    })
+
+    const c = await getColdDrinks
+
+    console.log(c)
+
+     
+
+    console.log("person4 : shows ticket")
+
+    console.log("person5 : shows ticket")
+
+  } catch (error) {
+
+    console.log(error)
+
+  }
+
+}
+
+
+
+movieNight();
+
+
+
+//promise.all use
+
+
+
+async function movieNight() {
+
+ try {
+
+  console.log("person1 : shows ticket");
+
+  console.log("person2 : shows ticket");
+
+
+
+  const promiseWifeBringingTickets = new Promise((resolve, reject) => {
+
+   setTimeout(() => {
+
+    resolve("ticket");
+
+   }, 3000);
+
+  });
+
+
+
+  const t = await promiseWifeBringingTickets;
+
+
+
+  console.log("wife : i have the tickets");
+
+  console.log("husband : we should go in");
+
+  console.log("wife : no i am hungry");
+
+
+
+  const getPopcorn = new Promise((resolve, reject) => {
+
+   resolve(`${t} popcorn`);
+
+  });
+
+
+
+  const getButter = new Promise((resolve, reject) => {
+
+   resolve(`${t} butter`);
+
+  });
+
+
+
+  const getColdDrinks = new Promise((resolve, reject) => {
+
+   resolve(`${t} coldDrinks`);
+
+  });
+
+
+
+  const [p, b, c] = await Promise.all([getPopcorn, getButter, getColdDrinks]);
+
+
+
+  console.log("husband : i got the popcorn");
+
+  console.log("husband : now we should go in");
+
+  console.log("wife : no i need butter on the popcorn");
+
+
+
+  console.log(c);
+
+
+
+  console.log("person4 : shows ticket");
+
+  console.log("person5 : shows ticket");
+
+ } catch (error) {
+
+  console.log(error);
+
+ }
+
+}
+
+
+
+movieNight();
+
+
+
+
+
+// Convert the createPost , deletePost you wrote previously into async await completely
+
+
+
+let posts = [];
+
+let lastActivityTime;
+
+
+
+function printPost() {
+
+ posts.forEach((post) => {
+
+  console.log(post.title + " " + lastActivityTime);
+
+ });
+
+}
+
+
+
+function createPost(post) {
+
+ return new Promise((resolve, reject) => {
+
+  setTimeout(() => {
+
+   posts.push(post);
+
+   resolve();
+
+  }, 1000);
+
+ });
+
+}
+
+
+
+function updateLastUserActivityTime() {
+
+ return new Promise((resolve, reject) => {
+
+  setTimeout(() => {
+
+   lastActivityTime = new Date();
+
+   resolve();
+
+  }, 1000);
+
+ });
+
+}
+
+
+
+function deletePost() {
+
+ return new Promise((resolve, reject) => {
+
+  setTimeout(() => {
+
+   if (posts.length > 0) {
+
+    const deletedPost = posts.pop();
+
+    resolve(deletedPost);
+
+   } else {
+
+    reject("ERROR");
+
+   }
+
+  }, 1000);
+
+ });
+
+}
+
+
+
+async function main() {
+
+ try {
+
+  await createPost({ title: "POST1" });
+
+  await updateLastUserActivityTime();
+
+  await createPost({ title: "POST2" });
+
+  await updateLastUserActivityTime();
+
+  await createPost({ title: "POST3" });
+
+  await updateLastUserActivityTime();
+
+  printPost();
+
+  const deletedPost = await deletePost();
+
+  console.log("Deleted Post: ", deletedPost);
+
+  console.log("Posts after deletion: ", posts);
+
+ } catch (error) {
+
+  console.log(error);
+
+ }
+
+}
+
+
+
+main();
+    </script>
+</body>
+</html>
