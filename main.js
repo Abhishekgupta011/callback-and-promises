@@ -12,23 +12,23 @@ function getTodos() {
     //     }
     // })
     // .then (response=>showOutput(response))
-    // .catch(error=>console.log(error));
+    // .catch(error=>console.error(error));
   
   
   axios
 .get("https://jsonplaceholder.typicode.com/todos?_limit=5",{timeout : 5000})
-.then (response=>showOutput(response))
-.catch(error=>console.log(error));
+.then (res=>showOutput(res))
+.catch(error=>console.error(error));
 }
-  // POST REQUEST
+ // POST REQUEST
   function addTodo() {
     axios
         .post("https://jsonplaceholder.typicode.com/todos",{
             title : "new todo",
             completed : false   
     })
-    .then (response=>showOutput(response))
-    .catch(error=>console.log(error));
+    .then (res=>showOutput(res))
+    .catch(error=>console.error(error));
   }
   
   // PUT/PATCH REQUEST
@@ -38,33 +38,33 @@ function getTodos() {
             title : "updated todo",
             completed : true   
     })
-    .then (response=>showOutput(response))
-    .catch(error=>console.log(error));
+    .then (res=>showOutput(res))
+    .catch(error=>console.error(error));
   }
   
   // DELETE REQUEST
   function removeTodo() {
     axios
         .delete("https://jsonplaceholder.typicode.com/todos/1")
-        .then (response=>showOutput(response))
-        .catch(error=>console.log(error));
+        .then (res=>showOutput(res))
+        .catch(error=>console.error(error));
   }
   
   // SIMULTANEOUS DATA
   function getData() {
     axios.all([
-        axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5")
+        axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5"),
         axios.get("https://jsonplaceholder.typicode.com/posts?_limit=5")
     ])
     .then(axios.spread((todos, posts)=>showOutput(posts)))
-    .catch(error=>console.log(error))
+    .catch(error=>console.error(error))
   }
   
   // CUSTOM HEADERS
   function customHeaders() {
     const config = {
         headers: {
-            "Content-type" : "application/json",
+            "Content-Type" : "application/json",
             Autorization: "sometoken"
         }
     }
@@ -73,8 +73,8 @@ function getTodos() {
             title : "new todo",
             completed : false   
     }, config)
-    .then (response=>showOutput(response))
-    .catch(error=>console.log(error));
+    .then (res=>showOutput(res))
+    .catch(error=>console.error(error));
   }
   
   // TRANSFORMING REQUESTS & RESPONSES
@@ -101,20 +101,20 @@ function getTodos() {
         //     return status<500; // reject only is status is greater or equal to 500
         // }
     })
-    .then (response=>showOutput(response))
-    .catch(error=>{
-        if(error.response){
-           console.log(error.response.data)
-           console.log(error.response.status)
-           console.log(error.response.headers)
-           if(error.response.status=== 404){
-            alert("ERROR: Page not found")
+    .then (res=>showOutput(res))
+    .catch(err=>{
+        if(err.response){
+           console.log(err.response.data)
+           console.log(err.response.status)
+           console.log(err.response.headers)
+           if(err.response.status=== 404){
+            alert("ERROR: Page not found");
            }
-        } else if(error.request) {
+        } else if(err.request) {
               // request was made but no response
-              console.error(error.request)
+              console.error(err.request)
         } else{
-            console.error(error.message)
+            console.error(err.message)
         }
     })
   }
@@ -127,19 +127,20 @@ function getTodos() {
         cancelToken: source.token
     })
     
-    .then (response=>showOutput(response))
+    .then (res=>showOutput(res))
     .catch(thrown=>{
         if(axios.isCancel(thrown)){
             console.log("Request Canceled", thrown.message)
         }
-    })
+    });
     if(true){
         source.cancel("Request Canceled")
     }
   }
   
   // INTERCEPTING REQUESTS & RESPONSES
-  axios.interceptors.request.use((config)=>{
+  axios.interceptors.request.use(
+    config=>{
     console.log(`${config.method.toUpperCase()} request sent to ${config.url} at ${new Date().getTime()}`);
     return config;
   }, error=>{
@@ -150,19 +151,19 @@ function getTodos() {
    const axiosinstance = axios.create({
     baseURL: "https://jsonplaceholder.typicode.com"
    });
-   //axiosinstance.get("/comments").then(res=>showOutput(res));
+   axiosinstance.get("/comments").then(res=>showOutput(res));
   // Show output in browser
-  function showOutput(res) {
+  function showOutput(respone) {
     document.getElementById('res').innerHTML = `
     <div class="card card-body mb-4">
-      <h5>Status: ${res.status}</h5>
+      <h5>Status: ${respone.status}</h5>
     </div>
     <div class="card mt-3">
       <div class="card-header">
         Headers
       </div>
       <div class="card-body">
-        <pre>${JSON.stringify(res.headers, null, 2)}</pre>
+        <pre>${JSON.stringify(respone.headers, null, 2)}</pre>
       </div>
     </div>
     <div class="card mt-3">
@@ -170,7 +171,7 @@ function getTodos() {
         Data
       </div>
       <div class="card-body">
-        <pre>${JSON.stringify(res.data, null, 2)}</pre>
+        <pre>${JSON.stringify(respone.data, null, 2)}</pre>
       </div>
     </div>
     <div class="card mt-3">
@@ -178,7 +179,7 @@ function getTodos() {
         Config
       </div>
       <div class="card-body">
-        <pre>${JSON.stringify(res.config, null, 2)}</pre>
+        <pre>${JSON.stringify(respone.config, null, 2)}</pre>
       </div>
     </div>
   `;
