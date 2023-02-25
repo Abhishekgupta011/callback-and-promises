@@ -6,33 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .button {
-          background-color: #07868f;
-          border: none;
-          color: white;
-          padding: 10px 115px;
-          text-align: center;
-          text-decoration: none;
-          font-size: 16px;
-          cursor: pointer;
-        }
-        .bg-dark {
-            background: #333;
-            color: #fff;
-        }
         
-        #my-form
-        {
-            background-color: rgb(97, 156, 153);
+        body{
+            background-image: url(wallpaper.jpg);
+        }
+        fieldset {
+            border-radius: 15px;
+            background-color: white;
+            margin: auto;
+            width: 600px;
+            border-color: #0fa3bd;
         }
         .error{
             background-color: red;
         }
+        input[type=text],input[type=email]{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-align: left;
+            font-size: 20px;
+            }
+            input[type=submit]{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #0fa3bd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #0fa3bd;
+            color: white;
+            font-size: 30px;
+            }
+
         </style>
 </head>
 <body>
-    
-    <form action="#" id="my-form" class="bg-dark">
+    <fieldset>
+    <form action="#" id="my-form" class="bg-dark"">
         <h2>Add user</h2>
         <div class="msg"></div>
         <div>
@@ -46,6 +63,7 @@
         <input type="submit" class="button" value="submit">
     </form> 
     <ol class="listitems"> </ol>
+    </fieldset>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
     <script>
         const newForm = document.querySelector('#my-form')
