@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        body{
+            background-image: url(wallpaper.jpg);
+        }
+        fieldset {
+            border-radius: 15px;
+            background-color: white;
+            margin: auto;
+            width: 600px;
+            border-color: #0fa3bd;
+        }
+        .error{
+            background-color: red;
+        }
+        input[type=text],input[type=email]{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-align: left;
+            font-size: 20px;
+            }
+            input[type=submit]{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #0fa3bd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #0fa3bd;
+            color: white;
+            font-size: 30px;
+            }
+            input[type=button]{
+                margin: 12px 0;
+                border-radius: 4px;
+                box-sizing: border-box;
+                background-color: #0fa3bd;
+                color: white;
+                border: #0fa3bd;
+                margin-left: 8px;
+            }
+        </style>
+</head>
+<body>
+    <fieldset>
+    <form action="#" id="my-form" class="bg-dark"">
+        <h2>Add user</h2>
+        <div class="msg"></div>
+        <div>
+        <label for="name" >Name:</label><br>
+        <input type="text" id="name" size="35" class="name" name="username"><br><br>
+        </div>
+        <div>
+        <label for="mail">Email:</label><br>
+        <input type="email" id="mail"  size="35" class="mail" name="Email"><br><br>
+        </div>
+        <input type="submit" class="button" value="submit">
+    </form> 
+    <ol class="listitems"> </ol>
+    </fieldset>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+    <script>
+        const newForm = document.querySelector('#my-form')
+        const nameInput = document.querySelector('#name').value
+        const emailInput = document.querySelector('#mail').value
+        const msg = document.querySelector('.msg')
+        newForm.addEventListener('submit', onSubmit)
+        function onSubmit(e){
+            e.preventDefault();
+            if(nameInput==="" || emailInput==="")
+            {
+                msg.classList.add('error')
+                msg.innerHTML = 'please fill aeras'
+                setTimeout(()=> msg.remove(), 3000)
+                const values = e.target.username.value
+                const emailvalue = e.target.Email.value
+                const object ={
+                    name : values,
+                    email : emailvalue
+                }
+                axios.post('https://crudcrud.com/api/dba3e005367e4744806ffed694b68a39/data', object)
+                .then(function (response) {
+                    console.log(response);
+                    showregisterUser(object);
+                })
+                .catch(function (error) {
+                    document.body.innerHTML=document.body.innerHTML+ "<h4> Someting wrong</h4>"
+                    console.log(error);
+                });
+                axios
+                    .get("https://crudcrud.com/api/dba3e005367e4744806ffed694b68a39/data",{timeout : 2000})
+                    .then(function (response) {
+                    const userList = response.data;
+                    console.log(userList);
+                    for(let i=0;i<userList.length;i++){
+                        showregisterUser(userList[i])
+                    }
+            })
+            .catch(function (error) {
+             console.log(error);
+  });
+        }
+            else{
+                console.log("success")
+            }
+        }
+        function showregisterUser(obj){
+            const parent = document.querySelector('.listitems');
+            const child = document.createElement('li')
+            child.className='newlist'
+            const dltBtn = document.createElement('input')
+            dltBtn.type='button'
+            dltBtn.className= 'dlt'
+            dltBtn.value='delete'
+            dltBtn.appendChild(document.createTextNode('Delete'))
+            child.textContent = obj.name + " " + obj.email
+            child.appendChild(dltBtn) 
+            parent.appendChild(child)
+            dltBtn.onclick = () =>{
+                localStorage.removeItem(obj.email)
+                parent.removeChild(child)
+            }
+            const editBtn= document.createElement('input')
+            editBtn.type='button'
+            editBtn.className='Edit'
+            editBtn.value='Edit'
+            editBtn.appendChild(document.createTextNode('Edit'))
+            child.appendChild(editBtn)
+            editBtn.onclick=()=>{
+                localStorage.removeItem(obj.email)
+                parent.removeChild(child)
+                document.getElementById('name').value= obj.name
+                document.getElementById('mail').value= obj.email
+            }
+        }
+
+    </script>
+</body>
+</html>
