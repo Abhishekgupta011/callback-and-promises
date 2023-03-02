@@ -43,6 +43,7 @@
             background-color: #0fa3bd;
             color: white;
             font-size: 30px;
+            cursor: pointer;
             }
             input[type=button]{
                 margin: 12px 0;
@@ -96,7 +97,7 @@
                     name : values,
                     email : emailvalue
                 };
-                axios.post('https://crudcrud.com/api/c4035cd8fd334262ac9f607c78df7ff3/data', object)
+                axios.post('https://crudcrud.com/api/9a2bcade2e214a68a5d913851f4b1787/data', object)
                 .then(function (response) {
                     console.log(response);
                 })
@@ -106,11 +107,11 @@
                 });
             }
             axios
-                .get("https://crudcrud.com/api/c4035cd8fd334262ac9f607c78df7ff3/data",{timeout : 2000})
+                .get("https://crudcrud.com/api/9a2bcade2e214a68a5d913851f4b1787/data",{timeout : 2000})
                 .then(function (response) {
                     const userList = response.data;
                     console.log(userList);
-                    for(let i=0;i<userList.length;i++){
+                    for(let i=1;i<userList.length;i++){
                         showregisterUser(userList[i]);
                     }
                 })
@@ -133,7 +134,7 @@
             parent.appendChild(child);
             dltBtn.onclick = () =>{
                 axios
-                    .delete(`https://crudcrud.com/api/c4035cd8fd334262ac9f607c78df7ff3/data/${obj._id}`)
+                    .delete(`https://crudcrud.com/api/9a2bcade2e214a68a5d913851f4b1787/data/${obj._id}`)
                     .then (response=>{
                         console.log(response);
                     })
@@ -150,8 +151,10 @@
             child.appendChild(editBtn);
             editBtn.onclick=()=>{
                 parent.removeChild(child);
+                
                 document.getElementById('name').value= obj.name;
                 document.getElementById('mail').value= obj.email;
+                document.getElementById('userid').value=obj._id
             };
         }
 
