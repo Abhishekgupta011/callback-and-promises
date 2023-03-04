@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXPENSE TRACKER</title>
-    <link rel="stylesheet" href="syle.css">
+    <link rel="stylesheet" href="fs.css">
 </head>
 <body>
     <main>
@@ -23,6 +23,10 @@
                     <input type="text" id="movie" class="enjoy" placeholder="Enter Audi Number">
                 </div>
                 <div class="form-group">
+                    <label for="seat">Seat Number</label>
+                    <input type="text" id="seat" class="s_no" placeholder="Enter Seat Number">
+                </div>
+                <div class="form-group">
                     <label for="things">Ordered Things</label>
                     <input type="text" id="things" class="food" placeholder="Enter Ordered Things">
                 </div>
@@ -30,16 +34,12 @@
                     <label for="price">Price</label>
                     <input type="text" id="price" class="bugs" placeholder="Enter Price">
                 </div>
-                <div class="form-group">
-                    <label for="seat">Seat Number</label>
-                    <input type="text" id="seat" class="s_no" placeholder="Enter Seat Number">
-                </div>
                 <button type="submit" class="btn">Add Expense</button>
             </fieldset>
         </form>
         <ol class="listitems"></ol>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
-    <script src="func.js"></script>
+    <script src="fun.js"></script>
 </body>
 </html>
