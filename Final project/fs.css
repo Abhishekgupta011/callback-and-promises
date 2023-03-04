@@ -9,10 +9,8 @@ h1{
 }
 fieldset{
     border-radius: 15px;
-    border-width: 10px;
-    border-color: white;
+    border:10px solid white;
     background-color: rgb(141, 218, 207);
-    margin: auto;
     width: 600px;
     float: left;
     padding: 20px;
