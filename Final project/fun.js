@@ -9,7 +9,7 @@ function Onsubmit(e) {
   const bugsData = document.querySelector('.bugs').value;
   const seatData = document.querySelector('.s_no').value;
   const error = document.querySelector('.msg');
-  if (enjoyData == '' || thingsData == '' || bugsData == '' || seatData == '') {
+  if (NameData == '' || enjoyData == '' || thingsData == '' || bugsData == '' || seatData == '') {
     error.textContent = 'Please fill in all fields.';
     setTimeout(() => {
       error.textContent = '';
@@ -22,7 +22,7 @@ function Onsubmit(e) {
       price: bugsData,
       seat: seatData
     };
-    axios.post('https://crudcrud.com/api/cdd9daef481942438fda8624a633e8d9/data', formData)
+    axios.post('https://crudcrud.com/api/9f0e87ea65e842a7a9ade725821e0dba/data', formData)
       .then(function (response) {
         console.log(response);
         const userList = JSON.parse(localStorage.getItem('formData')) || [];
@@ -31,7 +31,7 @@ function Onsubmit(e) {
         registerUser(document.querySelector('.listitems'), response.data);
       })
       .catch(function (error) {
-        document.body.innerHTML = document.body.innerHTML + "<h4> Something went wrong</h4>";
+        document.body.innerHTML = document.body.innerHTML + "<h4> Something went wrong </h4>";
         console.log(error);
       });
   }
@@ -39,7 +39,7 @@ function Onsubmit(e) {
 
 function populateList() {
     const parent = document.querySelector('.listitems');
-    axios.get('https://crudcrud.com/api/cdd9daef481942438fda8624a633e8d9/data')
+    axios.get('https://crudcrud.com/api/9f0e87ea65e842a7a9ade725821e0dba/data')
       .then(function (response) {
         const userList = response.data || [];
         for (let i = 0; i < userList.length; i++) {
@@ -74,7 +74,7 @@ function populateList() {
     }
 
     function deleteFormData(id, parent, child) {
-    axios.delete(`https://crudcrud.com/api/cdd9daef481942438fda8624a633e8d9/data/${id}`)
+    axios.delete(`https://crudcrud.com/api/9f0e87ea65e842a7a9ade725821e0dba/data/${id}`)
         .then(response => {
         console.log(response);
         parent.removeChild(child);

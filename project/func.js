@@ -22,7 +22,7 @@ function Onsubmit(e){
             price: bugsData,
             seat: seatData
         }
-        axios.post('https://crudcrud.com/api/52a6cca8cfee4779a23a67dcd0dcbd4b/data', formData)
+        axios.post('https://crudcrud.com/api/93e610658042495faeab55afa9749fe5/data', formData)
                 .then(function (response) {
                     console.log(response);
                 })
@@ -32,7 +32,7 @@ function Onsubmit(e){
                 });
     
     axios
-    .get("https://crudcrud.com/api/52a6cca8cfee4779a23a67dcd0dcbd4b/data",{timeout : 2000})
+    .get("https://crudcrud.com/api/93e610658042495faeab55afa9749fe5/data",{timeout : 2000})
     .then(function (response) {
         const userList = response.data;
         console.log(userList);
@@ -63,7 +63,7 @@ function registerUser(formData){
         dltBtn.innerHTML = 'Delete';
         child.appendChild(dltBtn);
         dltBtn.onclick=()=>{
-                    axios.delete(`https://crudcrud.com/api/52a6cca8cfee4779a23a67dcd0dcbd4b/data/${formData._id}`)
+                    axios.delete(`https://crudcrud.com/api/93e610658042495faeab55afa9749fe5/data/${formData._id}`)
                     .then (response=>{
                         console.log(response);
                     })
