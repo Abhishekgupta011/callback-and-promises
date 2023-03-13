@@ -7,254 +7,285 @@
     <title>EXPENSE TRACKER</title>
     <style>
         body{
-    background-image: url(solid.jpg);
-}
-h1{
-    text-align: center;
-    color: rgb(255, 171, 171);
-    border: dotted blanchedalmond;
-    padding: 15px;
-}
-fieldset{
-    border-radius: 15px;
-    border:10px solid white;
-    background-color: rgb(141, 218, 207);
-    width: 600px;
-    float: left;
-    padding: 20px;
-}
-input[type=text]{
-    width: 100%;
-    margin: 8px 10px;
-    border: 1px solid whitesmoke;
-    border-radius: 4px;
-    text-align: left;
-    box-sizing: border-box;
-    font-size: 15px;
-    padding: 12px 20px
-}
-input[type=number]{
-    width: 100%;
-    margin: 8px 10px;
-    border: 1px solid whitesmoke;
-    border-radius: 4px;
-    text-align: left;
-    box-sizing: border-box;
-    font-size: 15px;
-    padding: 12px 20px
-}
-#seat{
-    width: 100%;
-    margin: 8px 10px;
-    border: 1px solid whitesmoke;
-    border-radius: 4px;
-    text-align: left;
-    box-sizing: border-box;
-    font-size: 15px;
-    padding: 12px 20px
-}
-h2{
-    text-align: center;
-    font-weight: bold;
-}
-.btn{
-    width: 50%;
-    margin: 8px;
-    border: 1px solid whitesmoke;
-    border-radius: 4px;
-    text-align: center;
-    text-decoration-color: beige;
-    box-sizing: border-box;
-    font-size: 20px;
-    padding: 12px;
-    color: black;
-    cursor: pointer;
-    transform: translate(50%, 10%);
+            background: linear-gradient(110deg, #e1b382 60%, #2d545e 60%);
+    }
+    h1{
+        text-align: center;
+        color:white;
+        border: 8px dotted blanchedalmond;
+        padding: 15px;
+        font-size: 50px;
+    }
+    fieldset{
+        border-radius: 15px;
+        border:10px ;
+        box-shadow:0 0 10px #c89666;
+        background: linear-gradient(110deg, #e1b382 60%, #2d545e 60%);
+        width: 500px;
+        float: left;
+        padding: 20px;
+    }
+    input[type=text]{
+        width: 100%;
+        margin: 8px 10px;
+        border: 1px solid whitesmoke;
+        border-radius: 4px;
+        text-align: left;
+        box-sizing: border-box;
+        font-size: 15px;
+        padding: 12px 20px
+    }
+    input[type=number]{
+        width: 100%;
+        margin: 8px 10px;
+        border: 1px solid whitesmoke;
+        border-radius: 4px;
+        text-align: left;
+        box-sizing: border-box;
+        font-size: 15px;
+        padding: 12px 20px
+    }
+    #seat{
+        width: 100%;
+        margin: 8px 10px;
+        border: 1px solid whitesmoke;
+        border-radius: 4px;
+        text-align: left;
+        box-sizing: border-box;
+        font-size: 15px;
+        padding: 12px 20px
+    }
+    h2{
+        text-align: center;
+        font-weight: bold;
+    }
+    .btn{
+        width: 50%;
+        margin: 8px;
+        border: 1px solid whitesmoke;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration-color: beige;
+        box-sizing: border-box;
+        font-size: 20px;
+        padding: 12px;
+        color: black;
+        cursor: pointer;
+        transform: translate(50%, 10%);
 
-}
-.msg{
-    margin: 9px;
-    background-color: rgb(187, 28, 28);
-    color: white;
-    font-weight: bold;
-}
-.Table {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    grid-gap: 20px; /* spacing between items */
-}
+    }
+    .message{
+        margin: 9px;
+        background-color: rgb(187, 28, 28);
+        color: white;
+        font-weight: bold;
+    }
 
-li {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 column */
-    grid-template-rows: repeat(5, auto); /* 5 rows */
-    border: 1px solid black;
-    padding: 10px;
-}
-.dlt{
-    margin: 2px;
-    border: 1px solid white;
-    background-color: rgb(16, 218, 218);
-    
-}
-.edit{
-    margin: 2px;
-    border: 1px solid white;
-    background-color: rgb(16, 218, 218);
-    
-}
-.form-group{
-    font-weight: bold;
-}
+    li {
+        margin: 3px;
+        display: grid;
+        grid-template-columns: 3fr; /* 1 column */
+        grid-template-rows: repeat(5, auto); /* 5 rows */
+        border: 3px solid white;
+        padding: 10px;
+    }
+    .dlt{
+        margin: 2px;
+        color: azure;
+        background-color: #ff3a22;
+        border: none;
+        box-shadow:0 0 10px #eb4504;
+        border-radius: 10px;
+        
+    }
+    .edit{
+        margin: 2px;
+        color: azure;
+        border:none;
+        background-color: #ed8a63;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ca7554;
+        
+    }
+
+    #table{
+        width: 100%;
+        margin: 8px 10px;
+        border: 1px solid whitesmoke;
+        border-radius: 4px;
+        text-align: left;
+        box-sizing: border-box;
+        font-size: 15px;
+        padding: 12px 20px
+    }
 
     </style>
 </head>
 <body>
     <main>
-        <h1>Expense Tracker for Restaurant</h1>
-        <form class="expense">
-            <fieldset>
-                <h2>Orders</h2>
-                <div class="msg"></div>
-                <div class="form-group">
-                    <label for="price">Choose Price:</label>
-                    <input type="number" id="price" class="cost" placeholder="Enter Price">
-                </div>
-                <div class="form-group">
-                    <label for="dish">Choose Dish:</label>
-                    <input type="text" id="dish" class="enjoy" placeholder="Enter Dish Name">
-                </div>
-                <div class="form-group">
-                    <label for="seat">Choose a Table:</label>
-                    <select name="table" id="seat">
-                        <option value="Table1">Table 1</option>
-                        
-                        <option value="Table2">Table 2</option>
-                        
-                        <option value="Table3">Table 3</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn">Submit Bill</button>
-            </fieldset>
-            <ol>
-            <li>Table 1</li>
-            <ol class="table1"></ol>
-            <li>Table 2</li>
-            <ol class="table2"></ol>
-            <li>Table 3</li>
-            <ol class="table3"></ol>
-            </ol>
+        <form action="#" class="resto">
+        <h1>EXPENSE FOR A RESTAURANT</h1>
+        <fieldset>
+            <h2>Orders</h2>
+            <div class="message"></div>
+            <label for="price">Choose Price:</label>
+            <input type="number" id="price" class="cost">
+            <label for="dish">Choose Dish:</label>
+            <input type="text" id="dish" class="enjoy">
+            <label for="table">Choose Table:</label>
+            <select name="table" id="table">
+                <option value="table1">Table 1</option>
+                <option value="table2">Table 2</option>
+                <option value="table3">Table 3</option>
+            </select>
+            <button class="btn">Add Bill</button>
+        </fieldset>
         </form>
+        <ol class="grid-container">
+            <li class="t">Table 1</li>
+            <ol class="table1"></ol>
+            <li class="t">Table 2</li>
+            <ol class="table2"></ol>
+            <li class="t">Table 3</li>
+            <ol class="table3"></ol>
+        </ol>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
     <script>
-        const expenseForm = document.querySelector('.expense');
-        expenseForm.addEventListener('submit', Onsubmit);
-        window.addEventListener('load', populateList);
-        function Onsubmit(e) {
+        // Get the form element and add a submit event listener to it
+        const expenseForm = document.querySelector('.resto');
+        expenseForm.addEventListener('submit', OnSubmit);
+        // Function to handle form submission
+        async function OnSubmit(e) {
+            // Prevent default form submission behavior
         e.preventDefault();
+        try {
+        // Get form data from input fields
         const costData = document.querySelector('.cost').value;
         const enjoyDish = document.querySelector('.enjoy').value;
-        const tableData = document.querySelector('#seat').value;
-        const error = document.querySelector('.msg');
-        if (costData == '' || enjoyDish == '' || tableData == ''){
-            error.textContent = 'Please fill in all fields.';
-            setTimeout(() => {
+        const tableData = document.querySelector('#table').value;
+        const error = document.querySelector('.message');
+        // Check if any input fields are empty and show error message if so
+        if (costData === '' || enjoyDish === '') {
+        error.textContent = 'Please fill in all fields.';
+        setTimeout(() => {
             error.textContent = '';
-            }, 3000);
+        }, 3000);
         } else {
+            // Create an object with form data
             const billData = {
-            price: costData,
-            enjoy: enjoyDish,
-            table: tableData,
+                price: costData,
+                enjoy: enjoyDish,
+                table: tableData,
             };
-    axios.post('https://crudcrud.com/api/bada9d0e1a6a43589d644aaa43bd4a6c/data', billData)
-      .then(function (response) {
-        console.log(response);
-        const userList = JSON.parse(localStorage.getItem('formData')) || [];
-        userList[(response.data)._id] = response.data;
-        localStorage.setItem('formData', JSON.stringify(userList));
-        if (tableData === 'Table1') {
-        registerUser(document.querySelector('.table1'), response.data);
-        } else if (tableData === 'Table2') {
-        registerUser(document.querySelector('.table2'), response.data);
+            try {
+                // Make a POST request to save the form data to a remote API
+                const response = await axios.post('https://crudcrud.com/api/c5af94980fba4d3fa98a8fc5285abfbe/data', billData);
+                console.log(response);
+
+               // Save the new data in localStorage
+                localStorage.setItem(`billData_${billData.table}`, JSON.stringify(billData));
+
+                // Register the customer and add the new bill data to the table
+                const liElement = document.querySelector(`#table`);
+                registerCustomer(liElement, response.data);
+                await axios.put(`https://crudcrud.com/api/c5af94980fba4d3fa98a8fc5285abfbe/data/${response.data._id}`, billData);
+                console.log('Data updated successfully.');
+            } catch (error) {
+                // Handle errors if there is a problem with the API request
+                document.body.innerHTML += "<h4> Something went wrong </h4>";
+                console.log(error);
+            }
+            }
+            } catch (error) {
+                // Handle errors that might occur when getting form data
+                console.log(error);
+            }
         }
-        else  {
-        registerUser(document.querySelector('.table3'), response.data);
+        // Function to fetch existing data from remote API and display it on the page
+        window.addEventListener("DOMContentLoaded", async (e) => {
+        e.preventDefault();
+        try {
+            // Make a GET request to retrieve existing bill data from the remote API
+            const getrequest = await axios.get(`https://crudcrud.com/api/c5af94980fba4d3fa98a8fc5285abfbe/data`);
+            // Loop through the retrieved data and register customers for each table
+            for (let i = 0; i < getrequest.data.length; i++) {
+            const tableData = getrequest.data[i].table;
+            const liElement = document.querySelector(`#table${tableData}`);
+            registerCustomer(liElement, getrequest.data[i]);
+            }
+        } catch (err) {
+            // Handle errors if there is a problem with the API request
+            document.body.innerHTML += "<h4> No data Found</h4>";
         }
-      })
-      .catch(function (error) {
-        document.body.innerHTML = document.body.innerHTML + "<h4> Something went wrong </h4>";
-        console.log(error);
-      });
-  }
-}
-
-function populateList() {
-    const parent = document.querySelector('.table1');
-    axios.get('https://crudcrud.com/api/bada9d0e1a6a43589d644aaa43bd4a6c/data')
-      .then(function (response) {
-        const userList = response.data || [];
-        for (let i = 0; i < userList.length; i++) {
-          registerUser(parent,userList[i]);
+        });
+        // Function to add bill data to the table for a specific table number
+        function registerCustomer(liElement, billData) {
+        let tableElement;
+        // Get the corresponding table element based on the table number in the bill data
+        if (billData.table === 'table1') {
+            tableElement = document.querySelector('.table1');
+        } else if (billData.table === 'table2') {
+            tableElement = document.querySelector('.table2');
+        } else if (billData.table === 'table3') {
+            tableElement = document.querySelector('.table3');
+        } else {
+            console.error("Invalid table element:", billData.table);
+            return;
         }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-  
+        // Create list item element with bill information
+        const billList = document.createElement('li');
+        billList.innerHTML = `
+            <div>
+            <p>Cost &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ${billData.price}</p>
+            <p>Dish Name &nbsp;&nbsp;&nbsp;&nbsp; - ${billData.enjoy}</p>
+            <p>Table Number &nbsp;- ${billData.table}</p>
+            </div>
+        `;
+        // Append list item to table element
+        tableElement.appendChild(billList);
+        // Create delete button
+        const dltBtn = document.createElement('button');
+        dltBtn.className = 'dlt';
+        dltBtn.innerHTML = 'Delete';
+        billList.appendChild(dltBtn);
+        // Call deleteFormData function on click
+        dltBtn.onclick = () => {
+            deleteFormData(billData._id, tableElement, billList);
+        };
+        // Create edit button
+        const editBtn = document.createElement('button');
+        editBtn.className = 'edit';
+        editBtn.innerHTML = 'Edit';
+        billList.appendChild(editBtn);
+        // Call createEditButton function on click
+        editBtn.onclick = () => {
+            createEditButton(billData, tableElement, billList);
+        };
+        }
+        // Delete bill from server and remove from DOM and local storage
+        async function deleteFormData(id, tableElement, billList) {
+            try {
+                const response = await axios.delete(`https://crudcrud.com/api/c5af94980fba4d3fa98a8fc5285abfbe/data/${id}`);
+                console.log(response);
 
-  function registerUser(parent,billData) {
-    const child = document.createElement('li');
-    child.innerHTML = `
-      <div>
-        <p>Cost &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ${billData.price}</p>
-        <p>Dish Name &nbsp;&nbsp;&nbsp;&nbsp; - ${billData.enjoy}</p>
-        <p>Table Number &nbsp;- ${billData.table}</p>
-      </div>
-    `;
-    parent.appendChild(child);
-    const dltBtn = document.createElement('button');
-    dltBtn.className = 'dlt';
-    dltBtn.innerHTML = 'Delete';
-    child.appendChild(dltBtn);
-
-    dltBtn.onclick = () => {
-    deleteFormData(billData._id, parent, child);
-    }
-
-    function deleteFormData(id, parent, child) {
-    axios.delete(`https://crudcrud.com/api/bada9d0e1a6a43589d644aaa43bd4a6c/data/${id}`)
-        .then(response => {
-        console.log(response);
-        parent.removeChild(child);
-        
-        // Remove item from local storage
-        const userList = JSON.parse(localStorage.getItem('formData')) || [];
-        delete userList[id];
-        localStorage.setItem('formData', JSON.stringify(userList));
-        })
-        .catch(error => {
-        console.log(error);
-        })
-    }
-    const editBtn = document.createElement('button');
-    editBtn.className = 'edit';
-    editBtn.innerHTML = 'Edit';
-    child.appendChild(editBtn);
-    editBtn.onclick=()=>{
-        createEditButton(billData, parent, child);
-    }
-  }
-  
-    function createEditButton(billData, parent, child) {
-        parent.removeChild(child);
-        document.querySelector('.cost').value = billData.name;
-        document.querySelector('.enjoy').value = billData.enjoy;
-        document.querySelector('#seat').value = billData.table;
-
-  }
+                // Remove list item from DOM
+                billList.parentNode.removeChild(billList);
+                // Remove item from local storage
+                localStorage.removeItem(`billData_${id}`);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            // Populate edit form with bill data and remove list item
+            function createEditButton(billData, tableElement, billList) {
+            // Remove list item from DOM
+            tableElement.removeChild(billList);
+            // Populate edit form with bill data
+            document.querySelector('.cost').value = billData.price;
+            document.querySelector('.enjoy').value = billData.enjoy;
+            document.querySelector('#table').value = billData.table;
+            }
     </script>
 </body>
 </html>
