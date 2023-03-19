@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .leaderboard {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  padding: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 10px;
+  width: 100%;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+</style>
+</head>
+<body>
+    <div class="leaderboard">
+        <h2>Leaderboard</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body">
+            <!-- This is where the leaderboard entries will be added dynamically -->
+          </tbody>
+        </table>
+        <div id="pagination-container">
+          <!-- This is where the pagination links will be added dynamically -->
+        </div>
+      </div>
+      
+      <form id="score-form">
+        <label for="name-input">Name:</label>
+        <input type="text" id="name-input" required>
+        <label for="score-input">Score:</label>
+        <input type="number" id="score-input" required>
+        <button type="submit">Add Score</button>
+      </form>
+      
+    <script>
+        const leaderboardBody = document.getElementById('leaderboard-body');
+    const scoreForm = document.getElementById('score-form');
+    const paginationContainer = document.getElementById('pagination-container');
+    const pageSize = 5; // Number of entries to display per page
+    
+    let leaderboard = [
+      { name: 'Alice', score: 100 },
+      { name: 'Bob', score: 90 },
+      { name: 'Charlie', score: 80 },
+      { name: 'David', score: 70 },
+      { name: 'Eve', score: 60 },
+    ];
+    
+    function updateLeaderboard(pageNum = 1) {
+      // Clear the current leaderboard
+      leaderboardBody.innerHTML = '';
+    
+      // Sort the leaderboard array by score in descending order
+      leaderboard.sort((a, b) => b.score - a.score);
+    
+      // Calculate the start and end indices of the entries to display on the current page
+      const startIndex = (pageNum - 1) * pageSize;
+      const endIndex = startIndex + pageSize;
+    
+      // Iterate over the leaderboard entries for the current page
+      leaderboard.slice(startIndex, endIndex).forEach((entry, index) => {
+        const row = leaderboardBody.insertRow();
+        const rankCell = row.insertCell(0);
+        const nameCell = row.insertCell(1);
+        const scoreCell = row.insertCell(2);
+        rankCell.textContent = startIndex + index + 1;
+        nameCell.textContent = entry.name;
+        scoreCell.textContent = entry.score;
+      });
+    
+      // Update the pagination controls
+      const totalPages = Math.ceil(leaderboard.length / pageSize);
+      paginationContainer.innerHTML = '';
+      if (totalPages > 1) {
+        const previousLink = document.createElement('a');
+        previousLink.href = '#';
+        previousLink.textContent = 'Previous';
+        if (pageNum === 1) {
+          previousLink.classList.add('disabled');
+        } else {
+          previousLink.addEventListener('click', event => {
+            event.preventDefault();
+            updateLeaderboard(pageNum - 1);
+          });
+        }
+        paginationContainer.appendChild(previousLink);
+        const pageLinks = document.createElement('div');
+        pageLinks.id = 'page-links';
+        for (let i = 1; i <= totalPages; i++) {
+          const link = document.createElement('a');
+          link.href = '#';
+          link.textContent = i;
+          if (i === pageNum) {
+            link.classList.add('active');
+          }
+          link.addEventListener('click', event => {
+            event.preventDefault();
+            updateLeaderboard(i);
+          });
+          pageLinks.appendChild(link);
+        }
+        paginationContainer.appendChild(pageLinks);
+        const nextLink = document.createElement('a');
+        nextLink.href = '#';
+        nextLink.textContent = 'Next';
+        if (pageNum === totalPages) {
+          nextLink.classList.add('disabled');
+        } else {
+          nextLink.addEventListener('click', event => {
+            event.preventDefault();
+            updateLeaderboard(pageNum + 1);
+          });
+        }
+        paginationContainer.appendChild(nextLink);
+      }
+    }
+    
+</script>
+</body>
+</html>
